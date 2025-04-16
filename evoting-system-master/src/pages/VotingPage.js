@@ -1,210 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import Web3 from 'web3';
-import '../styles/VotingPage.css';
-import ConnectWallet from './ConnectWallet';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import loadBlockchain from "../utils/loadBlockchain"; // Make sure this imports correctly
+import "../styles/VotingPage.css";
+import contractAddress from '../config/contract-address.json';
 
-const contractABI = [
-  {
-    "inputs": [{ "internalType": "string", "name": "_name", "type": "string" }],
-    "name": "addCandidate",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address", "name": "_voter", "type": "address" }],
-    "name": "registerVoter",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "_candidateId", "type": "uint256" }],
-    "name": "vote",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "admin",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "name": "candidates",
-    "outputs": [
-      { "internalType": "uint256", "name": "id", "type": "uint256" },
-      { "internalType": "string", "name": "name", "type": "string" },
-      { "internalType": "uint256", "name": "voteCount", "type": "uint256" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "candidatesCount",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getCandidates",
-    "outputs": [
-      {
-        "components": [
-          { "internalType": "uint256", "name": "id", "type": "uint256" },
-          { "internalType": "string", "name": "name", "type": "string" },
-          { "internalType": "uint256", "name": "voteCount", "type": "uint256" }
-        ],
-        "internalType": "struct Evoting.Candidate[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getResults",
-    "outputs": [
-      {
-        "components": [
-          { "internalType": "uint256", "name": "id", "type": "uint256" },
-          { "internalType": "string", "name": "name", "type": "string" },
-          { "internalType": "uint256", "name": "voteCount", "type": "uint256" }
-        ],
-        "internalType": "struct Evoting.Candidate[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalVotes",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "name": "voters",
-    "outputs": [
-      { "internalType": "bool", "name": "registered", "type": "bool" },
-      { "internalType": "bool", "name": "voted", "type": "bool" },
-      { "internalType": "address", "name": "delegate", "type": "address" },
-      { "internalType": "uint256", "name": "vote", "type": "uint256" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  }
-];
 
-const contractAddress = '0x5B38Da6a701c568545dCfcB03FcB875f56beddC4';
-
-const parties = [
-  {
-    name: 'Bharatiya Janata Party (BJP)',
-    color: '#f39c12',
-    candidates: [
-      { id: 0, name: 'Narendra Modi', constituency: 'Varanasi' },
-      { id: 1, name: 'Amit Shah', constituency: 'Gandhinagar' },
-      { id: 2, name: 'Rajnath Singh', constituency: 'Lucknow' }
-    ]
-  },
-  {
-    name: 'Indian National Congress',
-    color: '#2980b9',
-    candidates: [
-      { id: 3, name: 'Rahul Gandhi', constituency: 'Wayanad' },
-      { id: 4, name: 'Priyanka Gandhi', constituency: 'Lucknow' },
-      { id: 5, name: 'Mallikarjun Kharge', constituency: 'Kalaburagi' }
-    ]
-  }
-];
-
-function VotingPage() {
-  const [wallet, setWallet] = useState(null);
-  const [selectedCandidate, setSelectedCandidate] = useState(null);
-  const [web3, setWeb3] = useState(null);
+const VotingPage = () => {
+  const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
+  const [candidates, setCandidates] = useState([]);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (wallet) {
-      const _web3 = new Web3(window.ethereum);
-      const _contract = new _web3.eth.Contract(contractABI, contractAddress);
-      setWeb3(_web3);
-      setContract(_contract);
-    }
-  }, [wallet]);
+    const init = async () => {
+      try {
+        // Initialize Web3 and the contract instance
+        const { web3, accounts, contract } = await loadBlockchain(contractAddress.contractAddress);
+        setAccount(accounts[0]);
+        setContract(contract);
+
+        // Fetch candidates from the contract
+        const count = await contract.methods.candidateCount().call();
+        const candidateList = [];
+
+        for (let i = 0; i < count; i++) {
+          const c = await contract.methods.candidates(i).call();
+          candidateList.push({
+            id: c.id,
+            name: c.name,
+            party: c.party,
+            constituency: c.constituency,
+            voteCount: c.voteCount,
+          });
+        }
+
+        setCandidates(candidateList);
+        console.log("Loaded Candidates:", candidateList);
+      } catch (err) {
+        console.error("Error loading blockchain data:", err);
+        alert("Error loading blockchain. Check console.");
+      }
+    };
+    init();
+  }, []);
 
   const handleVote = async () => {
-    if (!wallet) {
-      alert("Please connect your wallet first.");
-      return;
-    }
-
     if (!selectedCandidate) {
-      alert("Please select a candidate.");
+      alert("Please select a candidate to vote.");
       return;
     }
 
     try {
-      await contract.methods.vote(selectedCandidate.id).send({ from: wallet });
-      alert(`Your vote for ${selectedCandidate.name} has been recorded on the blockchain.`);
-    } catch (error) {
-      console.error("Voting error:", error);
-      alert("There was an error while voting. Check the console for details.");
+      setLoading(true);
+      // Send the vote transaction
+      await contract.methods.vote(selectedCandidate).send({ from: account });
+
+      // ✅ Redirect to Success Page
+      navigate("/success");
+    } catch (err) {
+      console.error("Voting error:", err);
+      alert("Something went wrong while voting. Check console for details.");
+    } finally {
+      setLoading(false);
     }
   };
 
+  const groupByParty = () => {
+    const groups = {};
+    candidates.forEach((c) => {
+      if (!groups[c.party]) {
+        groups[c.party] = [];
+      }
+      groups[c.party].push(c);
+    });
+    return groups;
+  };
+
+  const grouped = groupByParty();
+
   return (
-    <div>
-      <ConnectWallet setWallet={setWallet} />
-      <div className="container">
-        <h2>Voting Instructions</h2>
-        <p className="instructions">
-          Select your preferred candidate by clicking on their card, then confirm your choice by clicking the “Cast Your Vote” button below.
-        </p>
+    <div className="voting-container">
+      <h1>Voting Instructions</h1>
+      <p>
+        Select your preferred candidate by clicking on their card, then confirm
+        your choice by clicking the “Cast Your Vote” button.
+      </p>
 
-        {parties.map((party, index) => (
-          <div className="party" key={index}>
-            <h3 style={{ color: party.color }}>{party.name}</h3>
-            <div className="candidates">
-              {party.candidates.map((candidate) => (
-                <div
-                  key={candidate.id}
-                  className={`card ${selectedCandidate?.id === candidate.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedCandidate(candidate)}
-                >
-                  <h4>{candidate.name}</h4>
-                  <p>{candidate.constituency}</p>
-                </div>
-              ))}
-            </div>
+      {/* Loop through each party and display candidates */}
+      {Object.keys(grouped).map((party) => (
+        <div key={party}>
+          <h2 style={{ color: party === "BJP" ? "orange" : "blue" }}>{party}</h2>
+          <div className="card-grid">
+            {grouped[party].map((candidate) => (
+              <div
+                key={candidate.id}
+                className={`card ${selectedCandidate === candidate.id ? "selected" : ""}`}
+                onClick={() => setSelectedCandidate(candidate.id)}
+              >
+                <h3>{candidate.name}</h3>
+                <p>{candidate.constituency}</p>
+              </div>
+            ))}
           </div>
-        ))}
-
-        <div className="button-container">
-          <button className="vote-button" onClick={handleVote}>
-            Cast Your Vote
-          </button>
         </div>
-      </div>
+      ))}
+
+      {/* Vote button */}
+      <button className="vote-button" onClick={handleVote} disabled={loading}>
+        {loading ? "Casting Vote..." : "Cast Your Vote"}
+      </button>
     </div>
   );
-}
+};
 
 export default VotingPage;

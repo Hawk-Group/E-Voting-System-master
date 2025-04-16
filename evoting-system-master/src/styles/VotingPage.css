@@ -1,98 +1,66 @@
-/* VotingPage.css */
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f6f8;
-}
-
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-h2 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+  background: #f8f8f8;
+  border-radius: 1rem;
 }
 
 .instructions {
-  text-align: center;
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 40px;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
 .party {
-  margin-bottom: 40px;
-}
-
-.party h3 {
-  color: #2980b9;
-  margin-bottom: 10px;
-  border-bottom: 2px solid #3498db;
-  display: inline-block;
-  padding-bottom: 5px;
+  margin-bottom: 2rem;
 }
 
 .candidates {
   display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
 }
 
 .card {
   background-color: #fff;
+  border: 2px solid #ccc;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  width: 250px;
+  padding: 1rem;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  width: 200px;
+  transition: all 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  border-color: #3498db;
+  transform: scale(1.03);
+  border-color: #444;
 }
 
-.card.selected {
-  border-color: #2ecc71;
-  background-color: #eafaf1;
-}
-
-.card h4 {
-  margin-bottom: 10px;
-  color: #2c3e50;
-}
-
-.card p {
-  margin: 0;
-  color: #777;
-}
-
-.button-container {
-  text-align: center;
-  margin-top: 30px;
+.selected {
+  border: 3px solid green;
+  background-color: #e0ffe0;
 }
 
 .vote-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   background-color: #2ecc71;
-  color: white;
   border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 10px;
+  color: white;
   cursor: pointer;
-  transition: background 0.3s;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
 }
 
 .vote-button:hover {
   background-color: #27ae60;
+}
+
+.vote-message {
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
 }

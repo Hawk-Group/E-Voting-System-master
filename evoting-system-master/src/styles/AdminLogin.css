@@ -1,0 +1,56 @@
+/* AdminLogin.css */
+
+/* Form container animation */
+@keyframes slideUp {
+    0% {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  form {
+    animation: slideUp 0.6s ease;
+  }
+  
+  /* Input focus styles */
+  input[type="text"],
+  input[type="password"] {
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.4); /* yellow ring */
+    border: 1px solid #facc15;
+  }
+  
+  /* Error message */
+  .error-text {
+    color: #f87171;
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Button hover effect */
+  button[type="submit"] {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #eab308;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive padding if needed */
+  @media (max-width: 400px) {
+    form {
+      padding: 1.5rem;
+    }
+  }
+  

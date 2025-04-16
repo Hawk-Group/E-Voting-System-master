@@ -9,6 +9,10 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import VotingPage from './pages/VotingPage';
 import ConnectWallet from './pages/ConnectWallet';
+import AdminLogin from './pages/AdminLogin';
+import AdminPage from './pages/AdminPage';
+import ResultsPage from './pages/ResultsPage';
+import SuccessPage from './pages/SuccessPage';
 
 import './App.css';
 
@@ -30,6 +34,10 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/voting" element={<VotingPage />} />
             < Route path="/connect-wallet" element={<ConnectWallet />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/results" element={<ResultsPage />} />
+            < Route path="/success" element={<SuccessPage />} />
           
           
             

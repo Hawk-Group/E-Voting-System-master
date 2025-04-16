@@ -41,9 +41,24 @@ const Navbar = () => {
               Login
             </Link>
           </li>
+
           <li className="nav-item">
             <Link to="/signup" className="nav-link btn-nav btn-signup" onClick={() => setMenuOpen(false)}>
               Sign Up
+            </Link>
+            </li>
+
+            <li className="nav-item">
+            <Link to="/results" className="nav-link btn-nav btn-signup" onClick={() => setMenuOpen(false)}>
+              View Live Results
+            </Link>
+            </li>
+
+            
+
+            <li className="nav-item">
+            <Link to="/admin-login" className="nav-link btn-nav btn-signup" onClick={() => setMenuOpen(false)}>
+              Admin Login
             </Link>
           </li>
         </ul>
