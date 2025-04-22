@@ -1,0 +1,290 @@
+/* pages/HomePage.css */
+.hero-section {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 4rem 0;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Features Section */
+.features-section {
+  padding: 5rem 0;
+  background-color: white;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.section-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background-color: rgba(52, 152, 219, 0.1);
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.feature-card p {
+  color: #666;
+}
+
+/* How It Works Section */
+.how-it-works-section {
+  padding: 5rem 0;
+  background-color: var(--light-gray);
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.step h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.step p {
+  color: #666;
+}
+
+/* Elections Section */
+.elections-section {
+  padding: 5rem 0;
+  background-color: white;
+}
+
+.elections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.election-card {
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  position: relative;
+  transition: var(--transition);
+}
+
+.election-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.election-status {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.active {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: var(--success);
+}
+
+.upcoming {
+  background-color: rgba(243, 156, 18, 0.2);
+  color: var(--warning);
+}
+
+.election-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.election-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.election-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.view-all-container {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+/* Call to Action */
+.cta-section {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--success) 100%);
+  color: white;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-image {
+    order: -1;
+  }
+  
+  .hero-content {
+    text-align: center;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 0;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .feature-card, .step, .election-card {
+    padding: 1.5rem;
+  }
+}

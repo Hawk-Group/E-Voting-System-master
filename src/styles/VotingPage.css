@@ -1,0 +1,154 @@
+/* VotingPage.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f8;
+  color: #333;
+}
+
+.voting-page {
+  padding: 20px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-icon {
+  cursor: pointer;
+  color: #333;
+}
+
+.dashboard {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h2 {
+  margin-bottom: 15px;
+}
+
+.logout-btn {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 40px 0 20px;
+  color: #222;
+}
+
+.party-title {
+  font-size: 1.6rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+.candidates-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.candidate-card {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.candidate-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.candidate-card.selected {
+  border-color: #007bff;
+  background-color: #e9f5ff;
+}
+
+.candidate-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.select-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.select-btn:hover {
+  background-color: #0056b3;
+}
+
+.confirm-vote {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 40px;
+}

@@ -1,0 +1,183 @@
+[
+    {
+      "name": "Narendra Modi",
+      "party": "BJP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Narendra_Modi_2021.jpg",
+      "candidateId": 0
+    },
+    {
+      "name": "Rahul Gandhi",
+      "party": "Congress",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Rahul_Gandhi.jpg",
+      "candidateId": 1
+    },
+    {
+      "name": "Arvind Kejriwal",
+      "party": "AAP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Arvind_Kejriwal_%28cropped%29.jpg",
+      "candidateId": 2
+    },
+    {
+      "name": "Akhilesh Yadav",
+      "party": "Samajwadi Party",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/Akhilesh_Yadav_2022.jpg",
+      "candidateId": 3
+    },
+    {
+      "name": "Sharad Pawar",
+      "party": "NCP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/06/Sharad_Pawar_in_2010.jpg",
+      "candidateId": 4
+    },
+    {
+      "name": "Yogi Adityanath",
+      "party": "BJP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Yogi_Adityanath_Portrait.png",
+      "candidateId": 5
+    },
+    {
+      "name": "Nitish Kumar",
+      "party": "JD(U)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/84/Nitish_Kumar.png",
+      "candidateId": 6
+    },
+    {
+      "name": "Uddhav Thackeray",
+      "party": "Shiv Sena",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/32/Uddhav_Thackeray_in_2019.jpg",
+      "candidateId": 7
+    },
+    {
+      "name": "K. Chandrashekar Rao",
+      "party": "BRS",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/K._Chandrashekar_Rao_in_2018.jpg",
+      "candidateId": 8
+    },
+    {
+      "name": "Pinarayi Vijayan",
+      "party": "CPI(M)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Pinarayi_Vijayan.jpg",
+      "candidateId": 9
+    },
+    {
+      "name": "MK Stalin",
+      "party": "DMK",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c2/M._K._Stalin.jpg",
+      "candidateId": 10
+    },
+    {
+      "name": "Asaduddin Owaisi",
+      "party": "AIMIM",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/24/Asaduddin_Owaisi_in_2014.jpg",
+      "candidateId": 11
+    },
+    {
+      "name": "Hemant Soren",
+      "party": "JMM",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/58/Hemant_Soren.jpg",
+      "candidateId": 12
+    },
+    {
+      "name": "Devendra Fadnavis",
+      "party": "BJP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Devendra_Fadnavis.jpg",
+      "candidateId": 13
+    },
+    {
+      "name": "Bhupesh Baghel",
+      "party": "Congress",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/23/Bhupesh_Baghel.jpg",
+      "candidateId": 14
+    },
+    {
+      "name": "Naveen Patnaik",
+      "party": "BJD",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Naveen_Patnaik.jpg",
+      "candidateId": 15
+    },
+    {
+      "name": "Tejashwi Yadav",
+      "party": "RJD",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Tejashwi_Yadav.jpg",
+      "candidateId": 16
+    },
+    {
+      "name": "Kanhaiya Kumar",
+      "party": "Congress",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Kanhaiya_Kumar_2016.jpg",
+      "candidateId": 17
+    },
+    {
+      "name": "Priyanka Gandhi",
+      "party": "Congress",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Priyanka_Gandhi_Vadra.jpg",
+      "candidateId": 18
+    },
+    {
+      "name": "Bhagwant Mann",
+      "party": "AAP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bhagwant_Mann_in_2022.jpg",
+      "candidateId": 19
+    },
+    {
+      "name": "Aditya Thackeray",
+      "party": "Shiv Sena (UBT)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Aditya_Thackeray.jpg",
+      "candidateId": 20
+    },
+    {
+      "name": "Bandi Sanjay Kumar",
+      "party": "BJP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Bandi_Sanjay_Kumar_in_2021.jpg",
+      "candidateId": 21
+    },
+    {
+      "name": "Piyush Goyal",
+      "party": "BJP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Piyush_Goyal_2017.jpg",
+      "candidateId": 22
+    },
+    {
+      "name": "Smriti Irani",
+      "party": "BJP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/Smriti_Irani_in_2018.jpg",
+      "candidateId": 23
+    },
+    {
+      "name": "Manish Sisodia",
+      "party": "AAP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Manish_Sisodia_2017.jpg",
+      "candidateId": 24
+    },
+    {
+      "name": "Raj Thackeray",
+      "party": "MNS",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/23/Raj_Thackeray.jpg",
+      "candidateId": 25
+    },
+    {
+      "name": "Sonia Gandhi",
+      "party": "Congress",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Sonia_Gandhi.jpg",
+      "candidateId": 26
+    },
+    {
+      "name": "Amit Shah",
+      "party": "BJP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/32/Amit_Shah_2020.jpg",
+      "candidateId": 27
+    },
+    {
+      "name": "Rajnath Singh",
+      "party": "BJP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/66/Rajnath_Singh_in_2017.jpg",
+      "candidateId": 28
+    },
+    {
+      "name": "Mamata Banerjee",
+      "party": "TMC",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Mamata_Banerjee_Kolkata_2016-04-13_8988.jpg",
+      "candidateId": 29
+    }
+  ]
+  
