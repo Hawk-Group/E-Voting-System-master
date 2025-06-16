@@ -121,9 +121,7 @@ const LoginPage = () => {
                 <li>Tamper-proof and verifiable</li>
                 <li>Protected with advanced cryptography</li>
               </ul>
-              <div className="auth-image">
-                <img src="/api/placeholder/400/300" alt="Secure voting" />
-              </div>
+              
             </div>
           </div>
         </div>

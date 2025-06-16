@@ -1,27 +1,13 @@
 import React from 'react';
 import '../styles/HomePage.css';
+import '../styles/AboutPage.css';
 import { PieChart, Shield, Users, Globe } from 'lucide-react';
 
 const AboutPage = () => {
   return (
     <div className="about-page">
       {/* Navigation */}
-      <header>
-        <div className="container">
-          <nav>
-            <a href="/" className="logo">
-              
-              <span>BlackVote</span>
-            </a>
-            <ul className="nav-links">
-              <li><a href="#about" className="active">About</a></li>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#vision">Vision</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      
 
       {/* Hero Section */}
       

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Web3 from 'web3';
 import { ClipLoader } from 'react-spinners';
 import { FaUserCircle } from 'react-icons/fa';
+import jsPDF from 'jspdf';
 import contractABI from './abi.json';
 import '../styles/VotingPage.css';
 
@@ -11,7 +12,6 @@ const votingContract = new web3.eth.Contract(contractABI, contractAddress);
 
 const VotingPage = () => {
   const [candidates, setCandidates] = useState([]);
-  const [results, setResults] = useState([]);
   const [selectedCandidateId, setSelectedCandidateId] = useState(null);
   const [account, setAccount] = useState('');
   const [email, setEmail] = useState('');
@@ -44,18 +44,8 @@ const VotingPage = () => {
     }
   };
 
-  const fetchResults = async () => {
-    try {
-      const resultsData = await votingContract.methods.getResults().call();
-      setResults(resultsData);
-    } catch (error) {
-      console.error('Error fetching results:', error);
-    }
-  };
-
   const handleLogout = () => {
-    setEmail('');
-    setAccount('');
+    localStorage.clear();
     window.location.href = '/';
   };
 
@@ -80,20 +70,71 @@ const VotingPage = () => {
     };
 
     fetchCandidates();
-    fetchResults();
     initialize();
 
     const storedEmail = localStorage.getItem('userEmail');
     if (storedEmail) {
       setEmail(storedEmail);
     }
-
-    const interval = setInterval(() => {
-      fetchResults(); // auto-refresh live results
-    }, 5000);
-
-    return () => clearInterval(interval);
   }, []);
+
+  const generateVotingSlip = (candidate, voterEmail, voteTime) => {
+    const doc = new jsPDF();
+
+    // Header
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(22);
+    doc.text('BlockVote Voting Confirmation Slip', 20, 25);
+
+    // Line
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    doc.text('-------------------------------------------------------------------', 20, 30);
+
+    // Voter Info Section
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.text('Voter Information', 20, 40);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(12);
+    doc.text(`• Email Address: ${voterEmail}`, 25, 50);
+    doc.text(`• Wallet Address: ${account}`, 25, 60);
+    doc.text(`• Vote Timestamp: ${voteTime}`, 25, 70);
+
+    // Candidate Info Section
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.text('Candidate Chosen', 20, 85);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(12);
+    doc.text(`• Name: ${candidate.name}`, 25, 95);
+    doc.text(`• Party: ${candidate.party || 'Independent'}`, 25, 105);
+
+    // Divider
+    doc.setFontSize(12);
+    doc.text('-------------------------------------------------------------------', 20, 115);
+
+    // Footer Message
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(12);
+    doc.text('Your vote has been securely recorded on the blockchain.', 20, 125);
+
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(12);
+    doc.text('Thank you for participating in the democratic process.', 20, 135);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(11);
+    doc.text('Note: This slip is a confirmation of voting. Your vote remains confidential.', 20, 145);
+
+    // Footer
+    doc.setFontSize(10);
+    doc.text('© BlockVote 2025 | www.blockvote.org', 20, 160);
+
+    doc.save('BlockVote-VotingSlip.pdf');
+  };
 
   const handleVote = async () => {
     try {
@@ -101,11 +142,17 @@ const VotingPage = () => {
         alert('Please select a candidate first!');
         return;
       }
+
       await votingContract.methods.vote(selectedCandidateId).send({ from: account });
+
+      const selectedCandidate = candidates.find(c => c.candidateId === selectedCandidateId);
+      const timestamp = new Date().toLocaleString();
+
+      generateVotingSlip(selectedCandidate, email || 'anonymous@blockvote.com', timestamp);
+
       alert('✅ Vote successful!');
       fetchVotingStatus(account);
       fetchCandidates();
-      fetchResults();
     } catch (error) {
       console.error('Voting error:', error);
       alert('❌ Vote failed. Please try again.');
@@ -154,7 +201,7 @@ const VotingPage = () => {
           <div key={party}>
             <h2 className="party-title">{party}</h2>
             <div className="candidates-grid">
-              {partyCandidates.map((candidate) => (
+              {partyCandidates.map(candidate => (
                 <div
                   key={candidate._id}
                   className={`candidate-card ${selectedCandidateId === candidate.candidateId ? 'selected' : ''}`}
@@ -174,30 +221,13 @@ const VotingPage = () => {
           </div>
         ))}
 
-        {selectedCandidateId !== null && (
+        {selectedCandidateId !== null && !hasVoted && (
           <div className="confirm-vote">
             <button className="confirm-btn" onClick={handleVote}>
               ✅ Confirm Vote
             </button>
           </div>
         )}
-
-        {/* Live Results */}
-        <h2 className="title">📊 Live Election Results</h2>
-        {Object.entries(groupByParty(results)).map(([party, partyCandidates]) => (
-          <div key={party}>
-            <h2 className="party-title">{party}</h2>
-            <div className="candidates-grid">
-              {partyCandidates.map((candidate) => (
-                <div key={candidate.id} className="candidate-card">
-                  <h3>{candidate.name}</h3>
-                  <p>{candidate.party}</p>
-                  <p><strong>Votes:</strong> {parseInt(candidate.voteCount)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   );

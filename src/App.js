@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignUpPage';
 import AadharOtpPage from './pages/AadharOtpPage';
+import EnterOtpPage from './pages/EnterOtpPage'; // ✅ Don't forget to import this
 import AboutPage from './pages/AboutPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -16,10 +17,6 @@ import SuccessPage from './pages/SuccessPage';
 
 import './App.css';
 
-
-
-
-
 function App() {
   return (
     <Router>
@@ -31,17 +28,15 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/aadhar-verification" element={<AadharOtpPage />} />
+            <Route path="/enter-otp" element={<EnterOtpPage />} /> {/* ✅ Add this */}
             <Route path="/about" element={<AboutPage />} />
             <Route path="/voting" element={<VotingPage />} />
-            < Route path="/connect-wallet" element={<ConnectWallet />} />
+            <Route path="/connect-wallet" element={<ConnectWallet />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/results" element={<ResultsPage />} />
-            < Route path="/success" element={<SuccessPage />} />
-            < Route path = "admin-page" element = {<AdminPage/>} />
-          
-          
-            
+            <Route path="/success" element={<SuccessPage />} />
+            <Route path="/admin-page" element={<AdminPage />} />
           </Routes>
         </main>
         <Footer />
@@ -51,4 +46,3 @@ function App() {
 }
 
 export default App;
-
